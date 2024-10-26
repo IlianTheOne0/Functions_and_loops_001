@@ -1,4 +1,12 @@
-def is_the_biggest_check(a, b): # The unit-test of this functions in the functions/hm/ex_1 branch
+def main():
+    a = int(input('Enter the first number: '))
+    b = int(input('Enter the second number: '))
+
+    a, b = is_the_biggest_check(a, b)
+
+    table_of_multiplication(a, b)
+
+def is_the_biggest_check(a, b):
     a, b = (b, a) if a > b else (a, b)
     return a, b
 
