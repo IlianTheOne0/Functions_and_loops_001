@@ -1,19 +1,36 @@
 def main():
-    number = number_input()
+    is_input = True
+    is_minus = False
 
     while True:
+        if is_input:
+            number = number_input()
+
+        try:
+            number = int(number)
+        except ValueError as e:
+            print(f'Error: {e}')
+            continue
+
+        if int(number) < 0:
+            number = int(number) - int(number) * 2
+            is_minus = True
+
+        is_input = False
+
         option = menu()
 
         if option == 1:
-            print('=' * 50, f'\nNumber of digits in the number: {first(number)}\n', '=' * 50)
+            print('=' * 50 + f'\nNumber of digits in the {number if not is_minus else f"-{number}"}: {first(number)}\n' + '=' * 50)
         elif option == 2:
-            print('=' * 50, f'\nSum of the digits in the number: {second(number)}\n', '=' * 50)
+            print('=' * 50 + f'\nSum of the digits in the {number if not is_minus else f"-{number}"}: {second(number)}\n' + '=' * 50)
         elif option == 3:
-            print('=' * 50, f'\nArithmetic mean of the digits in the number: {third(number)}\n', '=' * 50)
+            print('=' * 50 + f'\nArithmetic mean of the digits in the {number if not is_minus else f"-{number}"}: {third(number)}\n' + '=' * 50)
         elif option == 4:
-            print('=' * 50, f'\nNumber of zeros in the number: {fourth(number)}\n', '=' * 50)
+            print('=' * 50 + f'\nNumber of zeros in the {number if not is_minus else f"-{number}"}: {fourth(number)}\n' + '=' * 50)
         elif option == 5:
-            number = number_input()
+            is_input = True
+            continue
         else:
             break
 
@@ -28,12 +45,16 @@ def menu():
           '5. Enter another number\n' \
           '6. Exit\n')
 
-    return int(input('Option: '))
+    while True:
+        try:
+            return int(input('Option: '))
+        except ValueError as e:
+            print(f'Error: {e}')
 
 def breaker(number):
-    temp = list()
+    temp = []
 
-    for i in number:
+    for i in str(number):
         temp.append(i)
 
     return temp
@@ -43,9 +64,12 @@ def first(number):
 
 def second(number):
     temp = breaker(number)
-    result = int()
+    result = 0
 
     for i in temp:
+        if i == '-':
+            continue
+
         result += int(i)
 
     return result
@@ -60,7 +84,7 @@ def third(number):
 
 def fourth(number):
     temp = breaker(number)
-    result = int()
+    result = 0
 
     # result = temp.count(str(0)) - with using the built-in python function
 
