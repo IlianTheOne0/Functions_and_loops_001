@@ -1,3 +1,22 @@
+def main():
+    number = number_input()
+
+    while True:
+        option = menu()
+
+        if option == 1:
+            print('=' * 50, f'\nNumber of digits in the number: {first(number)}\n', '=' * 50)
+        elif option == 2:
+            print('=' * 50, f'\nSum of the digits in the number: {second(number)}\n', '=' * 50)
+        elif option == 3:
+            print('=' * 50, f'\nArithmetic mean of the digits in the number: {third(number)}\n', '=' * 50)
+        elif option == 4:
+            print('=' * 50, f'\nNumber of zeros in the number: {fourth(number)}\n', '=' * 50)
+        elif option == 5:
+            number = number_input()
+        else:
+            break
+
 def number_input():
     return input('Enter the number: ')
 
