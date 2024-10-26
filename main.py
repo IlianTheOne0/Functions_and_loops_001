@@ -1,4 +1,7 @@
 import func
 
 if __name__ == '__main__':
-    func.main()
+    try:
+        func.main()
+    except Exception as e:
+        print(f'Error: {e}')
